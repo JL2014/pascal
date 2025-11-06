@@ -21,7 +21,7 @@ int main(int argc, char** argv)
         s = argv[1];
     } else {
         if (! (cin >> s)) {
-            cerr << "Erreur : aucun entier fourni en argument ou stdin\n";
+            cerr << "Erreur : aucun entier fourni en argument ou stdin" << endl;
             return 1;
         }
     }
@@ -29,14 +29,14 @@ int main(int argc, char** argv)
     fmpz_t n;
     fmpz_init(n);
     if (fmpz_set_str(n, s.c_str(), 10) != 0) {
-        cerr << "Erreur : impossible de parser l'entier '" << s << "'\n";
+        cerr << "Erreur : impossible de parser l'entier '" << s << "'" << endl;
         fmpz_clear(n);
         return 2;
     }
 
     // Cas n < 0
     if (fmpz_sgn(n) < 0) {
-        cerr << "Erreur : n doit etre >= 0\n";
+        cerr << "Erreur : n doit etre >= 0" << endl;
         fmpz_clear(n);
         return 3;
     }
@@ -45,7 +45,7 @@ int main(int argc, char** argv)
     // On vérifie donc si n tient dans un unsigned long (fmpz_fits_ulong_p).
     // Vérification que n tient dans un unsigned long : n <= ULONG_MAX
     if (fmpz_cmp_ui(n, ULONG_MAX) > 0) {
-        cerr << "n est trop grand pour iterer (ne tient pas dans unsigned long).\n";
+        cerr << "n est trop grand pour iterer (ne tient pas dans unsigned long)." << endl;
         cerr << "Impossible d'afficher la ligne complete du triangle de Pascal dans ce cas." << endl;
         fmpz_clear(n);
         return 4;
