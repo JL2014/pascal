@@ -31,14 +31,14 @@ int main(int argc, char** argv)
     if (fmpz_set_str(n, s.c_str(), 10) != 0) {
         cerr << "Erreur : impossible de parser l'entier '" << s << "'\n";
         fmpz_clear(n);
-        return 1;
+        return 2;
     }
 
     // Cas n < 0
     if (fmpz_sgn(n) < 0) {
         cerr << "Erreur : n doit etre >= 0\n";
         fmpz_clear(n);
-        return 1;
+        return 3;
     }
 
     // On ne peut pas itérer jusqu'à n si n ne tient pas dans un unsigned long.
@@ -48,7 +48,7 @@ int main(int argc, char** argv)
         cerr << "n est trop grand pour iterer (ne tient pas dans unsigned long).\n";
         cerr << "Impossible d'afficher la ligne complete du triangle de Pascal dans ce cas." << endl;
         fmpz_clear(n);
-        return 2;
+        return 4;
     }
 
     unsigned long n_ui = fmpz_get_ui(n);
