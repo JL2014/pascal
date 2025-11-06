@@ -1,7 +1,7 @@
 # pascal
 
-echo "1" | ./pascal
-1 1
+echo "1" | ./pascal\
+1 1\
 ./pascal 1\
 1 1\
 ./pascal 2\
