@@ -63,20 +63,18 @@ int main(int argc, char** argv)
     fmpz_set_ui(c, 1); // C(n,0) = 1
 
     // Impression de la première valeur
-    char* buf = fmpz_get_str(NULL, 10, c);
-    cout << buf;
-    flint_free(buf);
+    fmpz_print(c);
 
-    for (unsigned long k = 1; k <= n_ui; ++k) {
-        unsigned long mult = n_ui - k + 1; // tient dans unsigned long parce que n_ui tient
+    unsigned long k, mult;
+    for (k = 1; k <= n_ui; ++k) {
+        mult = n_ui - k + 1; // tient dans unsigned long parce que n_ui tient
         // c = c * mult
         fmpz_mul_ui(c, c, mult);
         // c = c / k  (division exacte)
         fmpz_divexact_ui(c, c, k);
         // afficher c
-        buf = fmpz_get_str(NULL, 10, c);
-        cout << ' ' << buf;
-        flint_free(buf);
+        cout << ' ';
+        fmpz_print(c);
     }
 
     cout << endl;
